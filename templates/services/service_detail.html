@@ -1,0 +1,19 @@
+{% extends 'basic/base.html' %}
+
+{% block title %} {{ service.title }} {% endblock %}
+
+{% block content %}
+<h1 class="text-center">Услуга</h1>
+
+<div class="service table">
+    <h3 class="text-center">{{service.title}}</h3>
+    <div class="row-fluid text-center mb-5 offset-md-1">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <button type="submit" class="btn btn-outline-primary text-center">Отправить</button>
+        </form>
+        <a href="{% url 'services:services_list' %}">Вернуться</a>
+    </div>  
+</div>
+{% endblock %}
