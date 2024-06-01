@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+<<<<<<< HEAD
 from orders.views import OrderListView
 
 urlpatterns = [
@@ -37,3 +38,30 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+=======
+from config.ddtb import DEBUG_TOOLBAR_PATH
+
+from freelance.views import RegisterView
+
+from django.urls import path
+
+
+urlpatterns = [
+    path('', include('freelance.urls')),
+    path('ratings/', include('ratings.urls')),
+    path('services/', include('services.urls')),
+    path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('register/', RegisterView.as_view(), name='register'),
+    # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    #Services
+    path("services/", include("services.urls"), name = "services"),
+
+    DEBUG_TOOLBAR_PATH, 
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+>>>>>>> ffce688842ec1fa75373b03dbab3af6db23f1b1a
